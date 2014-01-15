@@ -1,0 +1,38 @@
+{
+  "info" :
+  {
+    "name" : "QxD3",
+    "category" : [],
+
+    "summary" : "QxD3 Contribution",
+    "description" : "This is a skeleton for a qooxdoo contribution.",
+
+    "homepage" : "http://contrib.qooxdoo.org/project/QxD3",
+
+    "license" : "LGPL/EPL",
+    "authors" :
+    [
+      {
+        "name" : "Tobias Oetiker (oetiker)",
+        "email" : "tobi@oetiker.ch"
+      }
+    ],
+
+    "version" : "trunk",
+    "qooxdoo-versions": ["3.5"],
+
+    "download" : "",
+    "checksum" : ""
+  },
+
+  "provides" :
+  {
+    "namespace"   : "qxd3",
+    "encoding"    : "utf-8",
+    "class"       : "source/class",
+    "resource"    : "source/resource",
+    "translation" : "source/translation",
+    "type"        : "contribution"
+  }
+}
+

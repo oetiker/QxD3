@@ -1,4 +1,4 @@
-qxD3
+QxD3
 ====
 
-use D3.js within qooxdoo
+use D3.js within your qooxdoo applications
