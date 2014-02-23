@@ -38,7 +38,7 @@ qx.Class.define("qxd3.Svg", {
           .attr('width','100%')
           .attr('height','100%');
 
-      this.setd3SvgNode(node);
+      this.setD3SvgNode(node);
 
       this.addListenerOnce('appear',function(e){
           var el = this.getContentElement().getDomElement();
