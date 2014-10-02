@@ -30,7 +30,7 @@
   {
     "APPLICATION"  : "qxd3",
     "APPLICATION_MAIN_CLASS" : "${APPLICATION}.demo.Demo",
-    "QOOXDOO_PATH" : "../qooxdoo/3.5",
+    "QOOXDOO_PATH" : "../qooxdoo/4.0",
     //"QXTHEME"      : "qxd3.theme.modern.Theme",
     "QXTHEME"      : "qx.theme.Modern",
     "API_EXCLUDE"  : ["qx.test.*", "qxd3.demo.*", "${APPLICATION}.theme.*", "${APPLICATION}.test.*"],

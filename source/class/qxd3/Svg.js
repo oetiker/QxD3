@@ -323,9 +323,9 @@ qx.Class.define("qxd3.Svg", {
   }
   d3.map = function(object) {
     var map = new d3_Map();
-    if (object instanceof d3_Map) object.forEach(function(key, value) {
+    if (object instanceof d3_Map) { object.forEach(function(key, value) {
       map.set(key, value);
-    }); else for (var key in object) map.set(key, object[key]);
+    }); } else { for (var key in object) map.set(key, object[key]); }
     return map;
   };
   function d3_Map() {}
@@ -5548,7 +5548,7 @@ qx.Class.define("qxd3.Svg", {
         x2_ = y2_ = -(x1_ = y1_ = Infinity);
         xs = [], ys = [];
         n = data.length;
-        if (compat) for (i = 0; i < n; ++i) {
+        if (compat) { for (i = 0; i < n; ++i) {
           d = data[i];
           if (d.x < x1_) x1_ = d.x;
           if (d.y < y1_) y1_ = d.y;
@@ -5556,7 +5556,7 @@ qx.Class.define("qxd3.Svg", {
           if (d.y > y2_) y2_ = d.y;
           xs.push(d.x);
           ys.push(d.y);
-        } else for (i = 0; i < n; ++i) {
+        } } else { for (i = 0; i < n; ++i) {
           var x_ = +fx(d = data[i], i), y_ = +fy(d, i);
           if (x_ < x1_) x1_ = x_;
           if (y_ < y1_) y1_ = y_;
@@ -5564,7 +5564,7 @@ qx.Class.define("qxd3.Svg", {
           if (y_ > y2_) y2_ = y_;
           xs.push(x_);
           ys.push(y_);
-        }
+        }}
       }
       var dx = x2_ - x1_, dy = y2_ - y1_;
       if (dx > dy) y2_ = y1_ + dx; else x2_ = x1_ + dy;
@@ -7532,7 +7532,7 @@ qx.Class.define("qxd3.Svg", {
   }
   function d3_scale_linearFormatPrecision(type, range) {
     var p = d3_scale_linearPrecision(range[2]);
-    return type in d3_scale_linearFormatSignificant ? Math.abs(p - d3_scale_linearPrecision(Math.max(abs(range[0]), abs(range[1])))) + +(type !== "e") : p - (type === "%") * 2;
+    return type in d3_scale_linearFormatSignificant ? Math.abs(p - d3_scale_linearPrecision(Math.max(abs(range[0]), abs(range[1])))) + (+(type !== "e")) : p - (+(type === "%")) * 2;
   }
   d3.scale.log = function() {
     return d3_scale_log(d3.scale.linear().domain([ 0, 1 ]), 10, true, [ 1, 10 ]);
@@ -8290,7 +8290,7 @@ qx.Class.define("qxd3.Svg", {
       return a.a0 == b.a0 && a.a1 == b.a1;
     }
     function arc(r, p, a) {
-      return "A" + r + "," + r + " 0 " + +(a > π) + ",1 " + p;
+      return "A" + r + "," + r + " 0 " + (+(a > π)) + ",1 " + p;
     }
     function curve(r0, p0, r1, p1) {
       return "Q 0,0 " + p1;

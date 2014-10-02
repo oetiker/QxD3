@@ -43,7 +43,7 @@
   "let" :
   {
     "APPLICATION"  : "qxd3.demo",
-    "QOOXDOO_PATH" : "../../../qooxdoo/3.5",
+    "QOOXDOO_PATH" : "../../../qooxdoo/4.0",
     "QXTHEME"      : "qxd3.demo.theme.Theme",
     "API_EXCLUDE"  : ["qx.test.*", "${APPLICATION}.theme.*", "${APPLICATION}.test.*", "${APPLICATION}.simulation.*"],
     "LOCALES"      : [ "en" ],
@@ -58,6 +58,15 @@
 
   "jobs" :
   {
+    "build-script": {
+      "compile-options" :
+      {
+        "code": 
+        {
+          "format" : true
+        }
+      }
+    },
     "libraries" : 
     {
       "library" :
