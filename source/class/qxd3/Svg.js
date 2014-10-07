@@ -18,33 +18,41 @@
  * @ignore(Sizzle.matchesSelector)
  * @ignore(XDomainRequest)
  */
+ 
+var ID = 0;
+
 qx.Class.define("qxd3.Svg", {
-  extend : qx.ui.core.Widget,
+    extend : qx.ui.core.Widget,
 
-  /**
-   * Create a D3.js SVG element
-   * 
-   * @param callback {Function} Label to use
-   * @param icon {String?null} Icon to use
-   */
-  construct : function() {
-      this.base(arguments);
-      var node = d3.select("body")
-          .append('svg')
-          .attr('width','100%')
-          .attr('height','100%');
+    /**
+    * Create a D3.js SVG element
+    * 
+    */
+    construct : function() {
+        this.base(arguments);
+        ID++;
+        var node = d3.select("body")
+            .append('svg')
+            .attr('width','100%')
+            .attr('height','100%')
+            .attr('id','qxd3-'+ID);
+        this.setD3SvgNode(node);
 
-      this.setD3SvgNode(node);
+        this.addListenerOnce('appear',function(e){
+            var el = this.getContentElement().getDomElement();
+            qx.dom.Element.insertBegin(node[0][0],el);
+        },this);
+        this.__cssId = '#qxd3-'+ID+' ';
+        this.__cssEl = qx.bom.Stylesheet.createElement();
+    },
 
-      this.addListenerOnce('appear',function(e){
-          var el = this.getContentElement().getDomElement();
-          qx.dom.Element.insertBegin(node[0][0],el);
-      },this);
-  },
-  properties: {
-      d3SvgNode: {}
-  },
-  members: {
+    properties: {
+        d3SvgNode: {}
+    },
+
+    members: {
+      __cssEl: null,
+      __cssId: null,
 
       /**
        * return d3 to make the qx linter and compiler happy
@@ -54,33 +62,34 @@ qx.Class.define("qxd3.Svg", {
       },
       
       /**
-       * process map contents as css and add it to the document
+       * every d3 svg object has it's own stylesheet using the addCssRule command you can add
+       * rules to it.
        * 
-       * @param cssMap {Map} map representation of css
+       * @param selector {String} 
+       * @param ruleMap  {Map}
        * 
        * <pre>
-       * { "selector" : {
+       * {
        *     "propertyA" : "Value",
        *     "propertyB" : "Value"
-       *   }
        * }
        * </pre>
        */
        
-      addGlobalCss: function (cssMap){
-          var css = '';
-          for (var selector in cssMap){
-              css += selector + " {\n";
-              var rule = cssMap[selector];
-              for (var property in rule){
-                  css += "    " + qx.module.util.String.hyphenate(property) + ": "+rule[property]+";\n";
-              }
-              css += "}\n";
+      addCssRule: function (selector,ruleMap){
+          for (var property in ruleMap){
+            qx.bom.Stylesheet.addRule(this.__cssEl,this.__cssId+' '+selector,property+':'+ ruleMap[property]);
           }
-          this.debug(css);
-          qx.bom.Stylesheet.createElement(css);
+          this.debug(this.__cssEl);
+      },
+      removeCssRule: function(selector){
+          qx.bom.Stylesheet.removeRule(this.__cssEl,this.__cssId + ' ' + selector);
       }
-  }
+    },  
+    destruct : function() {
+        qx.bom.Stylesheet.removeSheet(this.__globalCssEl);
+        this.__globalCssEl = null;
+    }
 });
 
 // https://raw.github.com/mbostock/d3/master/d3.js

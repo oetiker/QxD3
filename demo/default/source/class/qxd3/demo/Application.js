@@ -45,25 +45,26 @@ qx.Class.define("qxd3.demo.Application",
             var d3Obj = new qxd3.Svg();
             var svgRoot = d3Obj.getD3SvgNode();
             var d3 = d3Obj.getD3();
-            d3Obj.addGlobalCss(
-            {
-                path :
+            d3Obj.addCssRule('path',
                 {
                     fillRule : 'evenodd',
                     stroke : '#333',
-                    strokeWidth : '2px'
-                },
-                ".sun path" : {
+                    strokeWidth : '1px'
+                }
+            );
+            d3Obj.addCssRule(".sun path", {
                     fill : '#6baed6'
-                },
-                ".planet path" : {
+                }
+            );
+            d3Obj.addCssRule(".planet path", {
                     fill : '#9ecae1'
-                },
-                ".annulus path" : {
+                }
+            );
+            d3Obj.addCssRule(".annulus path", {
                     fill : '#c6dbef'
                 }
-            });
-            var width = 960, height = 500, radius = 80, x = Math.sin(2 * Math.PI / 3), y = Math.cos(2 * Math.PI / 3);
+            );
+            var width = 500, height = 500, radius = 80, x = Math.sin(2 * Math.PI / 3), y = Math.cos(2 * Math.PI / 3);
             var offset = 0, speed = 4, start = Date.now();
             var svg = svgRoot.attr("viewBox", "0 0 " + width + " " + height).append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(.55)").append("g");
             var frame = svg.append("g").datum( {
