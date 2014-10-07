@@ -51,44 +51,47 @@ qx.Class.define("qxd3.Svg", {
     },
 
     members: {
-      __cssEl: null,
-      __cssId: null,
+        __cssEl: null,
+        __cssId: null,
 
-      /**
-       * return d3 to make the qx linter and compiler happy
-       */
-      getD3: function(){
-          return d3;
-      },
-      
-      /**
-       * every d3 svg object has it's own stylesheet using the addCssRule command you can add
-       * rules to it.
-       * 
-       * @param selector {String} 
-       * @param ruleMap  {Map}
-       * 
-       * <pre>
-       * {
-       *     "propertyA" : "Value",
-       *     "propertyB" : "Value"
-       * }
-       * </pre>
-       */
-       
-      addCssRule: function (selector,ruleMap){
-          for (var property in ruleMap){
-            qx.bom.Stylesheet.addRule(this.__cssEl,this.__cssId+' '+selector,property+':'+ ruleMap[property]);
-          }
-          this.debug(this.__cssEl);
-      },
-      removeCssRule: function(selector){
-          qx.bom.Stylesheet.removeRule(this.__cssEl,this.__cssId + ' ' + selector);
-      }
+        /**
+        * return d3 to make the qx linter and compiler happy
+        */
+        getD3: function(){
+            return d3;
+        },
+
+        /**
+        * every d3 svg object has it's own stylesheet using the addCssRule command you can add
+        * rules to it.
+        * 
+        * @param selector {String} 
+        * @param ruleMap  {Map}
+        * 
+        * <pre>
+        * {
+        *     "propertyA" : "Value",
+        *     "propertyB" : "Value"
+        * }
+        * </pre>
+        */
+
+        addCssRule: function (selector,ruleMap){
+            selector.split(/\s*,\s*/).forEach(function(selectorItem){
+                for (var property in ruleMap){
+                    qx.bom.Stylesheet.addRule(this.__cssEl,this.__cssId+' '+selectorItem,property+':'+ ruleMap[property]);
+                }
+            },this);
+        },
+        removeCssRule: function(selector){
+            selector.split(/\s*,\s*/).forEach(function(selectorItem){
+                qx.bom.Stylesheet.removeRule(this.__cssEl,this.__cssId + ' ' + selectorItem);
+            },this);
+        }
     },  
     destruct : function() {
         qx.bom.Stylesheet.removeSheet(this.__globalCssEl);
-        this.__globalCssEl = null;
+        this.__cssEl = null;
     }
 });
 
