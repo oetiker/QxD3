@@ -44,15 +44,17 @@ qx.Class.define("qxd3.Svg", {
     construct : function() {
         this.base(arguments);
         ID++;
+
         var node = d3.select("body")
             .append('svg')
             .attr('width','100%')
-            .attr('height','100%')
-            .attr('id','qxd3-'+ID);
+            .attr('height','100%');
+
         this.setD3SvgNode(node);
 
         this.addListenerOnce('appear',function(e){
             var el = this.getContentElement().getDomElement();
+            qx.bom.element.Attribute.set(el,'id','qxd3-'+ID);
             qx.dom.Element.insertBegin(node[0][0],el);
         },this);
         this.__cssId = '#qxd3-'+ID+' ';
