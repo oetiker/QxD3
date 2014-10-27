@@ -25,7 +25,7 @@ var ID = 0;
    in version 4.5 qooxdoo should be fine again */
 
 var qxversion = qx.core.Environment.get('qx.version');
-if ({'4.0.0': true, '4.0.1': true}.[qxversion]){
+if ({'4.0.0': true, '4.0.1': true}[qxversion]){
     qx.bom.Event.$$stopPropagation_old = qx.bom.Event.stopPropagation;
     qx.bom.Event.stopPropagation = function(e) {
         if (typeof e.target.className !== "object"){
