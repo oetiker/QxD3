@@ -398,7 +398,15 @@ qx.Class.define("qxd3.Svg", {
     if ((stop - start) / step === Infinity) throw new Error("infinite range");
     var range = [], k = d3_range_integerScale(abs(step)), i = -1, j;
     start *= k, stop *= k, step *= k;
-    if (step < 0) while ((j = start + step * ++i) > stop) range.push(j / k); else while ((j = start + step * ++i) < stop) range.push(j / k);
+    if (step < 0) {
+      while ((j = start + step * ++i) > stop) {
+        range.push(j / k);
+      }
+    } else {
+      while ((j = start + step * ++i) < stop) {
+        range.push(j / k);
+      }
+    }
     return range;
   };
   function d3_range_integerScale(x) {
@@ -422,7 +430,15 @@ qx.Class.define("qxd3.Svg", {
       });
     } else if (Array.isArray(object)) {
       var i = -1, n = object.length, o;
-      if (arguments.length === 1) while (++i < n) map.set(i, object[i]); else while (++i < n) map.set(f.call(object, o = object[i], i), o);
+      if (arguments.length === 1) {
+        while (++i < n) {
+          map.set(i, object[i]);
+        }
+      } else {
+        while (++i < n) {
+          map.set(f.call(object, o = object[i], i), o);
+        }
+      }
     } else {
       for (var key in object) map.set(key, object[key]);
     }
@@ -6523,11 +6539,29 @@ qx.Class.define("qxd3.Svg", {
         if (isNaN(o.py)) o.py = o.y;
       }
       distances = [];
-      if (typeof linkDistance === "function") for (i = 0; i < m; ++i) distances[i] = +linkDistance.call(this, links[i], i); else for (i = 0; i < m; ++i) distances[i] = linkDistance;
+      if (typeof linkDistance === "function") {
+        for (i = 0; i < m; ++i) {
+          distances[i] = +linkDistance.call(this, links[i], i);
+        }
+      } else {
+        for (i = 0; i < m; ++i) distances[i] = linkDistance;
+      }
       strengths = [];
-      if (typeof linkStrength === "function") for (i = 0; i < m; ++i) strengths[i] = +linkStrength.call(this, links[i], i); else for (i = 0; i < m; ++i) strengths[i] = linkStrength;
+      if (typeof linkStrength === "function") {
+        for (i = 0; i < m; ++i) {
+          strengths[i] = +linkStrength.call(this, links[i], i);
+        }
+      } else {
+        for (i = 0; i < m; ++i) strengths[i] = linkStrength;
+      }
       charges = [];
-      if (typeof charge === "function") for (i = 0; i < n; ++i) charges[i] = +charge.call(this, nodes[i], i); else for (i = 0; i < n; ++i) charges[i] = charge;
+      if (typeof charge === "function") {
+        for (i = 0; i < n; ++i) {
+          charges[i] = +charge.call(this, nodes[i], i);
+        }
+      } else {
+        for (i = 0; i < n; ++i) charges[i] = charge;
+      }
       function position(dimension, size) {
         if (!neighbors) {
           neighbors = new Array(n);
@@ -6920,7 +6954,13 @@ qx.Class.define("qxd3.Svg", {
       var n = data.length, m = data[0].length, k = 1 / n, i, j, o, y0 = [];
       for (j = 0; j < m; ++j) {
         for (i = 0, o = 0; i < n; i++) o += data[i][j][1];
-        if (o) for (i = 0; i < n; i++) data[i][j][1] /= o; else for (i = 0; i < n; i++) data[i][j][1] = k;
+        if (o) {
+          for (i = 0; i < n; i++) {
+            data[i][j][1] /= o;
+          }
+        } else {
+          for (i = 0; i < n; i++) data[i][j][1] = k;
+        }
       }
       for (j = 0; j < m; ++j) y0[j] = 0;
       return y0;
