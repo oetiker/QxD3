@@ -57,7 +57,7 @@ qx.Class.define("qxd3.Svg", {
             qx.bom.element.Attribute.set(el,'id','qxd3-'+ID);
             qx.dom.Element.insertBegin(node[0][0],el);
         },this);
-        this.__cssId = '#qxd3-'+ID+' ';
+        this.__cssId = '#qxd3-'+ID;
         this.__cssEl = qx.bom.Stylesheet.createElement();
     },
 
@@ -94,7 +94,7 @@ qx.Class.define("qxd3.Svg", {
         addCssRule: function (selector,ruleMap){
             selector.split(/\s*,\s*/).forEach(function(selectorItem){
                 for (var property in ruleMap){
-                    qx.bom.Stylesheet.addRule(this.__cssEl,this.__cssId+' '+selectorItem,property+':'+ ruleMap[property]);
+                    qx.bom.Stylesheet.addRule(this.__cssEl,this.__cssId + ' ' + selectorItem, property+':'+ ruleMap[property]);
                 }
             },this);
         },
@@ -111,7 +111,7 @@ qx.Class.define("qxd3.Svg", {
      * Our destructor takes care of removing the private css styles from the browser
      */
     destruct : function() {
-        qx.bom.Stylesheet.removeSheet(this.__globalCssEl);
+        qx.bom.Stylesheet.removeSheet(this.__cssEl);
         this.__cssEl = null;
     }
 });
