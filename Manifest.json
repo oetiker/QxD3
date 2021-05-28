@@ -1,36 +1,27 @@
 {
-  "info" :
-  {
-    "name" : "QxD3",
-    "summary" : "D3 Bindings for Qooxdoo",
-
-    "homepage" : "https://github.com/oetiker/QxD3",
-
-    "license" : "LGPL/EPL",
-    "authors" :
-    [
+  "info": {
+    "name": "QxD3",
+    "summary": "D3 Bindings for Qooxdoo",
+    "homepage": "https://github.com/oetiker/QxD3",
+    "license": "LGPL/EPL",
+    "authors": [
       {
-        "name" : "Tobias Oetiker (oetiker)",
-        "email" : "tobi@oetiker.ch"
+        "name": "Tobias Oetiker (oetiker)",
+        "email": "tobi@oetiker.ch"
       }
     ],
-
-    "version" : "0.4.0"
+    "version": "0.4.1"
   },
-
-  "provides" :
-  {
-    "namespace"   : "qxd3",
-    "encoding"    : "utf-8",
-    "class"       : "source/class",
-    "resource"    : "source/resource",
-    "translation" : "source/translation"
+  "provides": {
+    "namespace": "qxd3",
+    "encoding": "utf-8",
+    "class": "source/class",
+    "resource": "source/resource",
+    "translation": "source/translation"
   },
   "$schema": "https://qooxdoo.org/schema/Manifest-1-0-0.json",
   "requires": {
     "@qooxdoo/framework": "^6.0.0",
     "@qooxdoo/compiler": "^1.0.0"
   }
-
 }
-
