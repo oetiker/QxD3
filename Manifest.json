@@ -2,12 +2,9 @@
   "info" :
   {
     "name" : "QxD3",
-    "category" : [],
+    "summary" : "D3 Bindings for Qooxdoo",
 
-    "summary" : "QxD3 Contribution",
-    "description" : "This is a skeleton for a qooxdoo contribution.",
-
-    "homepage" : "http://contrib.qooxdoo.org/project/QxD3",
+    "homepage" : "https://github.com/oetiker/QxD3",
 
     "license" : "LGPL/EPL",
     "authors" :
@@ -18,11 +15,7 @@
       }
     ],
 
-    "version" : "trunk",
-    "qooxdoo-versions": ["3.5 - 5.x"],
-
-    "download" : "",
-    "checksum" : ""
+    "version" : "0.4.0"
   },
 
   "provides" :
@@ -31,8 +24,13 @@
     "encoding"    : "utf-8",
     "class"       : "source/class",
     "resource"    : "source/resource",
-    "translation" : "source/translation",
-    "type"        : "contribution"
+    "translation" : "source/translation"
+  },
+  "$schema": "https://qooxdoo.org/schema/Manifest-1-0-0.json",
+  "requires": {
+    "@qooxdoo/framework": "^6.0.0",
+    "@qooxdoo/compiler": "^1.0.0"
   }
+
 }
 

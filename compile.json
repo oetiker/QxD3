@@ -1,0 +1,29 @@
+{"$schema": "https://qooxdoo.org/schema/compile-1-0-0.json",
+  "targets": [
+    {
+      "type": "source",
+      "outputPath": "source-output"
+    },
+    {
+      "type": "build",
+      "outputPath": "build-output"
+    }
+  ],
+  "defaultTarget": "source",
+  "serve": {
+    "listenPort": 8749
+  },
+  "locales": [
+    "en"
+  ],
+  "environment": {
+    "qx.icontheme": "Tango"
+  },
+  "applications": [
+    {
+      "class": "qxd3.demo.Application",
+      "theme": "qx.theme.Simple",
+      "name": "qxd3-demo"
+    }
+  ]
+}
